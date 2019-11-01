@@ -39,5 +39,6 @@ filtered for the given state.num.  The data is then mapped using the maps and
 graphics package.
 
   <!-- badges: start -->
-  [![Travis build status](https://travis-ci.org/hardisoneverett/testpackage.svg?branch=master)](https://travis-ci.org/hardisoneverett/testpackage)
+[![Build Status](https://travis-ci.org/hardisoneverett/testpackage.svg?branch=master)](https://travis-ci.org/hardisoneverett/testpackage)
   <!-- badges: end -->
+
