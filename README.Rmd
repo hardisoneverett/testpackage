@@ -1,0 +1,39 @@
+---
+title: "README"
+author: "Me"
+date: "11/1/2019"
+output: html_document
+---
+This package is built to read, tidy, summarize, and map the FARS dataset.  There
+are five function: make_filename, fars_read, fars_read_years, fars_summarize_years
+and fars_map_state.
+
+make_filename creates a file name based on a given year or years.  The input to 
+the function is an integer vector.
+```{r make_filename}
+library(testpackage)
+make_filename(2013:2014)
+```
+
+fars_read checks to see if a file exists given a file name.  If it does exist, 
+then the data is read into R as data frame.  If the file does not exist, an 
+error message is shown.  This function takes in a character vector and
+should generally be used in conjunction with the make_filename function.
+
+fars_read_years combines fars_read and make_filename to read in FARS data given
+a set of years.  The function takes in an integer vector, representing the years
+of interest.  Each integer is then used to create a file name.  Each filename
+is then checked for in the current directory.  If the file exists, then it is
+loaded into R, if not, an error is thrown.  If the data is read into R, then it 
+is tidied to two columns, Month and Year.  The output is a dataframe.
+
+fars_summarize_years also takes in an integer vector.  This function then builds
+on fars_read_years by grouping the data by year and month and then summarizing 
+by count.  The output of this function is a dataframe.
+
+fars_map_state takes in an integer, state.num, and an integer vector, year. This
+function then creates a file name for the given year and checks to see if it 
+exists in the working directory.  If it does, then the file is loaded into R. If
+not, then an error message is thrown. Once the data is loaed into R, then it is
+filtered for the given state.num.  The data is then mapped using the maps and 
+graphics package.
