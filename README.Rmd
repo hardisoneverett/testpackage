@@ -37,3 +37,7 @@ exists in the working directory.  If it does, then the file is loaded into R. If
 not, then an error message is thrown. Once the data is loaed into R, then it is
 filtered for the given state.num.  The data is then mapped using the maps and 
 graphics package.
+
+  <!-- badges: start -->
+  [![Travis build status](https://travis-ci.org/hardisoneverett/testpackage.svg?branch=master)](https://travis-ci.org/hardisoneverett/testpackage)
+  <!-- badges: end -->
