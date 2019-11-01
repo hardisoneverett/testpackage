@@ -9,10 +9,10 @@
 #' file named does not exist, then an error message is returned.
 #'
 #' @examples \dontrun{fars_read("filename")}
+#' @importFrom dplyr tbl_df
+#' @importFrom readr read_csv
 #' @export
 fars_read <- function(filename) {
-        require(dplyr)
-        require(readr)
 
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -55,8 +55,10 @@ make_filename <- function(year) {
 #' @examples \dontrun{fars_read_years(2013:2015)}
 #'
 #' @export
+#'
+#' @importFrom dplyr mutate select
 fars_read_years <- function(years) {
-        require(dplyr)
+
         lapply(years, function(year) {
                 file <- make_filename(year)
                 tryCatch({
@@ -83,9 +85,11 @@ fars_read_years <- function(years) {
 #' @examples \dontrun{fars_summarize_years(2013)}
 #'
 #' @export
+#'
+#' @importFrom dplyr bind_rows group_by summarize
+#' @importFrom tidyr spread
 fars_summarize_years <- function(years) {
-        require(dplyr)
-        require(tidyr)
+
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
                 dplyr::group_by(year, MONTH) %>%
@@ -112,10 +116,12 @@ fars_summarize_years <- function(years) {
 #' @examples \dontrun{fars_map_state(9,2013)}
 #'
 #' @export
+#'
+#' @importFrom dplyr filter
+#' @importFrom maps map
+
 fars_map_state <- function(state.num, year) {
-        require(maps)
-        require(dplyr)
-        require(graphics)
+
         filename <- make_filename(year)
         data <- fars_read(filename)
         state.num <- as.integer(state.num)
